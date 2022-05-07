@@ -12,7 +12,7 @@ module.exports = function(app) {
   );
 
   app.post(
-    '/',
+    '/api',
     createProxyMiddleware({
       target: 'http://localhost:9090',
       changeOrigin: true,

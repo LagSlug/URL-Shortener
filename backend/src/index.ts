@@ -48,7 +48,7 @@ export default function start(props: Props) {
     }
   });
 
-  app.post('/', async function(req, res) {
+  app.post('/api', async function(req, res) {
     var { url } = req.body as { url: string };
     
     if(url.indexOf('http') !== 0) {
