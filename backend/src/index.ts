@@ -2,6 +2,7 @@ import express from 'express';
 import store from './models/store';
 import ShortURL from './models/ShortURL';
 import ShortUniqueId from 'short-unique-id';
+import normalizeUrl from './normalize-url';
 
 const uid = new ShortUniqueId({ length: 5 });
 
@@ -37,8 +38,9 @@ export default function start(props: Props) {
         code
       }
     })
-    if(shortURL) {
-      res.redirect(shortURL.url);
+    if(shortURL) {      
+
+      res.redirect(normalizeUrl(shortURL.url));
     }
     else {
       res.status(404).send();
