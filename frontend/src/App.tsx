@@ -10,7 +10,7 @@ function App() {
   const ref = React.useRef<HTMLInputElement>(null);
 
   const handleCreate = async () => {
-    const res = await axios.post('/api', {
+    const res = await axios.post(window.origin + '/api', {
       url: ref.current?.value
     })
     const { code, error } = res.data;
