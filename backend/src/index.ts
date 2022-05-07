@@ -3,6 +3,7 @@ import store from './models/store';
 import ShortURL from './models/ShortURL';
 import ShortUniqueId from 'short-unique-id';
 import normalizeUrl from './normalize-url';
+import validUrl from 'valid-url';
 
 const uid = new ShortUniqueId({ length: 5 });
 
@@ -48,7 +49,19 @@ export default function start(props: Props) {
   });
 
   app.post('/', async function(req, res) {
-    const { url } = req.body as { url: string };
+    var { url } = req.body as { url: string };
+    
+    if(url.indexOf('http') !== 0) {
+      url = 'http://' + url
+    }
+
+    // validate url
+    if(!validUrl.isUri(url)) {
+      res.status(400).json({
+        error: 'url is invalid'
+      })
+      return;
+    }
 
     var shortURL: ShortURL
     var tries = 0;

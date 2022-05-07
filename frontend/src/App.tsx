@@ -4,7 +4,9 @@ import './App.css';
 import axios from 'axios';
 
 function App() {
-  const [shortUrl, setShortUrl] = React.useState('test');
+  const [shortUrl, setShortUrl] = React.useState('');
+  const [error, setError] = React.useState('');
+
   const ref = React.useRef<HTMLInputElement>(null);
 
   const handleCreate = async () => {
@@ -13,7 +15,12 @@ function App() {
     })
     const { code, error } = res.data;
     
-    setShortUrl(window.origin + '/' + code)
+    if(error) {
+      setError(error);
+    }
+    else {
+      setShortUrl(window.origin + '/' + code)
+    }
   }
 
   return (
@@ -44,7 +51,9 @@ function App() {
         {
           shortUrl ? <span>Generated URL: <a href={shortUrl}>{ shortUrl }</a></span> : <></>
         }
-        
+        {
+          error ? <span>Error: { error } </span> : <></>
+        }
       </div>
     </div>
   );

@@ -24,7 +24,7 @@ async function runSync() {
     password: process.env.MYSQL_PASSWORD
   })
 
-  await sequelize.sync();
+  await sequelize.sync({ force: true });
   console.log('sync complete!')
 }
 
