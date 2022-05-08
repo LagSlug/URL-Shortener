@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node scripts/start",
     "sync": "ts-node scripts/sync",
-    "dev": "nodemon --watch \"src/**\" --ext \"ts,json,graphql\" --exec \"clear && npm start\""
+    "dev": "nodemon --watch \"src/**\" --ext \"ts,json,graphql\" --exec \"clear && npm start\"",
+    "build": "rm -rf dist && tsc"
   },
   "repository": {
     "type": "git",

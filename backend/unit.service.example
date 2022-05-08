@@ -1,0 +1,21 @@
+[Unit]
+Description=URL Shortener
+After=network.target
+
+[Service]
+Environment=PORT=9090 
+Environment=HOSTNAME=localhost
+Environment=MYSQL_DATABASE=urlshortener
+Environment=MYSQL_HOSTNAME=localhost
+Environment=MYSQL_PORT=3306
+Environment=MYSQL_USERNAME=
+Environment=MYSQL_PASSWORD=
+
+Type=simple
+User=ubuntu
+WorkingDirectory=[path to your backend]
+ExecStart=/usr/bin/node /[path to your distribution]/dist/scripts/start.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
